@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="Rostyslav (generated)" id="1618217447331-1">
+        <createTable tableName="courses">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="courses_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="lecturer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-2">
+        <createTable tableName="enrollments">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="enrollments_pkey"/>
+            </column>
+            <column name="mark" type="INTEGER"/>
+            <column name="review" type="VARCHAR(255)"/>
+            <column name="course_id" type="BIGINT"/>
+            <column name="student_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-3">
+        <createTable tableName="students">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="students_pkey"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-4">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="lecturer_id" type="BIGINT"/>
+            <column name="student_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-5">
+        <createTable tableName="lecturers">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="lecturers_pkey"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-6">
+        <addForeignKeyConstraint baseColumnNames="course_id" baseTableName="enrollments" constraintName="fkho8mcicp4196ebpltdn9wl6co" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="courses" validate="true"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-7">
+        <addForeignKeyConstraint baseColumnNames="student_id" baseTableName="users" constraintName="fkc8nfkx91xbh5fv7a02092q1ip" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="students" validate="true"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-8">
+        <addForeignKeyConstraint baseColumnNames="lecturer_id" baseTableName="courses" constraintName="fkt9v45o9358384n2veilnl2sq0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="lecturers" validate="true"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-9">
+        <addForeignKeyConstraint baseColumnNames="student_id" baseTableName="enrollments" constraintName="fk8kf1u1857xgo56xbfmnif2c51" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="students" validate="true"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-10">
+        <addForeignKeyConstraint baseColumnNames="lecturer_id" baseTableName="users" constraintName="fknq773gne4equ22e4nc7mk92xm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="lecturers" validate="true"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-11">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="courses_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-12">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="enrollments_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-13">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="lecturers_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-14">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="students_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="Rostyslav (generated)" id="1618217447331-15">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="users_id_seq" startValue="1"/>
+    </changeSet>
+</databaseChangeLog>
