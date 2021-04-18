@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -24,7 +23,6 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -73,8 +71,15 @@ public class CourseServiceTest {
         .usingFieldByFieldElementComparator()
         .hasSameElementsAs(expectedResponse.getAvailableCourses());
     Assertions.assertThat(actualResponse.getEnrolledCourses())
-            .usingFieldByFieldElementComparator()
-            .hasSameElementsAs(expectedResponse.getEnrolledCourses());
+        .usingFieldByFieldElementComparator()
+        .hasSameElementsAs(expectedResponse.getEnrolledCourses());
+  }
+
+  @Test
+  public void addCourse() {
+    doReturn(getCourse()).when(courseRepo).save(any());
+    doReturn(getLecturer()).when(userService).getLecturer(any());
+    Assertions.assertThat(courseService.addCourse("", COURSE1)).isEqualTo(getCourse());
   }
 
   private Student getStudent() {
